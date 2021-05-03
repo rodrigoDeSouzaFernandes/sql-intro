@@ -25,11 +25,12 @@ vamos imaginar um relacionamento entre proprietários de veículos e os veículo
 Em um relacionamento muitos para muitos, um registro de uma tabela pode estar associado a muitos registros da outra tabela. O Spotify é uma plataforma de streaming musical, nele você pode seguir os artistas que você mais gosta, analizando o relacionamento entre pessoas e artistas, uma pessoa pode seguir quantos artistas desejar, assim como cada artista pode ser seguido por diversas pessoas. temos então um relacionamento muitos para muitos.
 
 ### Para aquecer
+
 **Tente identificar os diferentes tipos de relação**
 Imagine daqui a 5 anos, você é um programador de sucesso e decidiu fazer um cruzeiro nas férias, você acaba de embarcar no navio, será que pode identificar as seguintes relações?
 
 1. Relação entre tripulantes e comandante.
-> N:1 - no cenário do cruzeiro muitos passageiros estão ligados a apenas um comandante do navio.
+> N:1 - neste cenário do cruzeiro, muitos passageiros estão ligados a apenas um comandante do navio.
 
 2. Relação entre quartos e tripulantes.
 > 1:N - cada quarto pode abrigar mais de uma pessoa, mas cada pessoa pertence a apenas um quarto.
@@ -38,9 +39,42 @@ Imagine daqui a 5 anos, você é um programador de sucesso e decidiu fazer um cr
 > N:N - uma pessoa pode ser servida por diferentes garçons em diferentes momentos, assim como o mesmo garçon serve diversas pessoas.
 
 4. Relação entre tripulantes e passagens.
- >1:1 - cada pessoa tem exclusivamente uma passagem e cada passagem é destinada a apenas uma pessoa.
+>1:1 - cada pessoa tem exclusivamente uma passagem e cada passagem é destinada a apenas uma pessoa.
 
-### Como as tabelas são relacionadas?
+### Como as tabelas são relacionadas no SQL 
 
+**Observe as tabelas abaixo e identifique a relação entre elas:**
+>vamos considerar que cada canção só pode estar presente em um album para fins didáticos  
+*Albuns*  
+
+album_id | album
+---------|------
+1 | Envious
+2 | Exuberant
+3 | Halowed Steam
+
+
+*Canções*
+cancao_id | album_id | cancao
+----------|----------|--------
+1|1| Soul For Us
+2|1| Reflections of Magic
+3|1| Dance With Her Own
+4|2| Troubles of my inner fire
+5|2| Time fireworks
+6|3| Magic Circus
+7|3| Honey, So I do
+8|3| Sweetie, Let's go Wild  
+
+#### Mas o que associa as tabelas?
+A essa altura do campeonato você ja deve estar se perguntando: "tá, mas como identificamos quais dados estão ligados entre si?", e é isso que vamos ver agora, e pra isso você deve compreender o que é uma "chave primária" e uma "chave estrangeira".
+
+#### Primary Key
+A Primary key ou chave primária de uma tabela, é a coluna identificadora de cada dado da tabela, obrigatoriamente toda tabela deve ter uma chave primaria, ela não pode ser nula e deve ser única, ou seja, não pode se repetir. É a identidade de cada linha.  
+volte nas tabelas acima e identifique a primary key de cada uma.
+
+#### Foreign Key
+A Foreign Key ou chave estrnageira de uma tabela, é a coluna onde vamos relacionar a quais dados essa linha pertence, deve-se especificar nessa coluna, a qual coluna e tabela que ela está relacionada.
+no caso das tabelas acima a foreign key foi montada na tabela canções a partir do `album_id` e através dela, podemos identificar quais canções pertencem a quais albuns.
 
 
