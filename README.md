@@ -26,20 +26,35 @@ Em um relacionamento muitos para muitos, um registro de uma tabela pode estar as
 
 ## **Para aquecer**
 
-**Tente identificar os diferentes tipos de relação**
+**Tente identificar os diferentes tipos de relação**  
+
 Imagine daqui a 5 anos, você é um programador de sucesso e decidiu fazer um cruzeiro nas férias, você acaba de embarcar no navio, será que pode identificar as seguintes relações?
+<br><br>
+**Primeiro tente identificar sozinho, depois clique no item para exibir a resposta correta.**
 
-1. Relação entre tripulantes e comandante.
-> N:1 - neste cenário do cruzeiro, muitos passageiros estão ligados a apenas um comandante do navio.
+1. <details>
+    <summary>Relação entre tripulantes e comandante.</summary>
+    <br>
+    N:1 - neste cenário do cruzeiro, muitos passageiros estão ligados a apenas um comandante do navio.
+  </details>
 
-2. Relação entre quartos e tripulantes.
-> 1:N - cada quarto pode abrigar mais de uma pessoa, mas cada pessoa pertence a apenas um quarto.
+2. <details>
+    <summary>Relação entre quartos e tripulantes.</summary>
+    <br>
+    1:N - cada quarto pode abrigar mais de uma pessoa, mas cada pessoa pertence a apenas um quarto.
+  </details>
 
-3. Relação entre tripulantes e garçons.
-> N:N - uma pessoa pode ser servida por diferentes garçons em diferentes momentos, assim como o mesmo garçon serve diversas pessoas.
+3. <details>
+    <summary>Relação entre tripulantes e garçons.</summary>
+    <br>
+    N:N - uma pessoa pode ser servida por diferentes garçons em diferentes momentos, assim como o mesmo garçon serve diversas pessoas.
+  </details>
 
-4. Relação entre tripulantes e passagens.
->1:1 - cada pessoa tem exclusivamente uma passagem e cada passagem é destinada a apenas uma pessoa.
+4. <details>
+    <summary>Relação entre tripulantes e passagens.</summary>
+    <br>
+    1:1 - cada pessoa tem exclusivamente uma passagem e cada passagem é destinada a apenas uma pessoa.
+    </details>
 
 ## **Como as tabelas são relacionadas no SQL **
 
@@ -98,7 +113,7 @@ o comando JOIN do SQL nos permite usar um operador de comparação para comparar
 
 Como já contextualizamos os JOINS, qual seria a diferença entre eles? veremos isso logo em seguida!
 
-### **INNER JOIN**
+## **INNER JOIN**
 O INNER JOIN faz a junção das tabelas de forma que nos traz como resultado todas a linhas que tem dados correspondentes nas duas tabelas, não trazendo, assim, dados da tabela A ou tabela B que não tem relação na outra tabela, ou seja, podemos vê-lo como uma intersecção de conjuntos.
 
 ![INNER JOIN](/images/INNER_JOIN.png)
@@ -136,7 +151,57 @@ ON t1.album_id = t2.album_id;
 #### **Exercicio de fixação**
 1. monte uma query que recupere os dados do exemplo acima, porém que exiba também o nome do artista associado ao album.  
 ~~dica: pode se fazer inúmeros INNER JOINS na mesma query~~
-2. use as tabelas "usuarios", "artistas_seguidos" e "artistas" e monte uma query que recupere uma coluna com o nome de cada usuário e o nome de cada artista que esse usuário segue.
+2. Quando a relação entre as tabelas é N:N(muitos para muitos), devemos usar uma tabela itermediária para associar os dados, este é o papel da tabela "artistas_seguidos" nesse caso.
+<br>
+use as tabelas "usuarios", "artistas_seguidos" e "artistas" e monte uma query que recupere uma coluna com o nome de cada usuário e o nome de cada artista que esse usuário segue.
+
+<br>
+<br>
+
+## **LEFT JOIN e RIGHT JOIN**
+Diferente do INNER JOIN que retorna uma intersecção, o LEFT JOIN retorna todas as linhas da primeira tabela, mesmo quando não há correspondência na segunda tabela. Trazendo todos os dados da primeira tabela e da segunda tabela apenas os que se relacionam com a primeira, como descreve a imagem a seguir:
+
+![LEFT JOIN](/images/LEFT_JOIN.png)
+
+Já o RIGHT JOIN segue o mesmo princípio, porém retorna todos os dados da segunda tabela, mesmo se não houver nenhuma correspondência na primeira tabela.
+
+![RIGHT JOIN](/images/RIGHT_JOIN.png)
+
+
+<br>
+<br>
+
+**Exercício de fixação**
+<br>
+Primeiramente vamos adicionar uma linha na nossa tabela de albuns para que possamos treinar o LEFT JOIN e o RIGHT JOIN.
+```SQL
+  USE SpotifyClone;
+  INSERT INTO albuns(album, artista_id) VALUES ("Meu album", 1);
+```
+Agora temos um album que não está relacionado a nenhuma canção.
+<br>
+Faça um INNER JOIN nas tabelas albuns e canções de forma que recupere uma coluna com o nome dos albuns e uma com o nome das canções e verifique o resultado;
+<br>
+Agora faça um LEFT JOIN buscando o mesmo resultado sendo a tabela 1, a tabela "albuns" e a 2 a tabela "cancoes".
+<details>
+    <summary>ver resposta</summary>
+    
+    SELECT
+      t1.album,
+      t2.cancao
+    FROM SpotifyClone.albuns AS t1
+    LEFT JOIN SpotifyClone.cancoes AS t2
+    ON t1.album_id = t2.album_id;
+    
+
+  </details>
+  <br>
+  <br>
+
+  resultado esperado:
+  ![Left e right join](/images/resultado-left-join.jpeg)
+
+  Agora que você já aprendeu, inverta a ordem de chamada das tabelas e faça um RIGHT JOIN, o resultado deve ser o mesmo.
 
 
 
