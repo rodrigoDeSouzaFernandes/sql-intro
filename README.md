@@ -2,9 +2,9 @@
 
 ## **O que vamos aprender?**
 Hoje você vai aprender a identificar os diferentes tipos de relacionamento entre tabelas, sendo eles:
-  *1:1 (um para um)
-  *1:N (um para muitos ou muitos para um)
-  *N:N (muitos para muitos)
+  * 1:1 (um para um)
+  * 1:N (um para muitos ou muitos para um)
+  * N:N (muitos para muitos)
 
 Além disso veremos como consultar os dados de tabelas relacionadas.
 
@@ -56,7 +56,7 @@ Imagine daqui a 5 anos, você é um programador de sucesso e decidiu fazer um cr
     1:1 - cada pessoa tem exclusivamente uma passagem e cada passagem é destinada a apenas uma pessoa.
     </details>
 
-## **Como as tabelas são relacionadas no SQL **
+## **Como as tabelas são relacionadas no SQL**
 
 **Observe as tabelas abaixo e identifique a relação entre elas:**
 >vamos considerar que cada canção só pode estar presente em um album, para fins didáticos  
@@ -148,14 +148,42 @@ ON t1.album_id = t2.album_id;
 3. usamos o INNER JOIN para especificar a qual tabela queremos fazer a junção;
 4. definimos as colunas que devem ter seus dados iguais nas duas tabelas para que essas linhas sejam associadas.
 
-#### **Exercicio de fixação**
+### **Exercicio de fixação**
 1. monte uma query que recupere os dados do exemplo acima, porém que exiba também o nome do artista associado ao album.  
-~~dica: pode se fazer inúmeros INNER JOINS na mesma query~~
-2. Quando a relação entre as tabelas é N:N(muitos para muitos), devemos usar uma tabela itermediária para associar os dados, este é o papel da tabela "artistas_seguidos" nesse caso.
+>dica: pode se fazer inúmeros INNER JOINS na mesma query
+<details>
+    <summary>ver resposta</summary>
+    
+    SELECT
+      t2.album,
+      t1.cancao,
+      t3.artista
+    FROM SpotifyClone.cancoes AS t1
+    INNER JOIN SpotifyClone.albuns AS t2
+    ON t1.album_id = t2.album_id
+    INNER JOIN SpotifyClone.artistas AS t3
+    ON t3.artista_id = t2.artista_id;
+    
+  </details>
+  <br>
+
+2. Quando a relação entre as tabelas é N:N(muitos para muitos), devemos usar uma tabela intermediária para associar os dados, este é o papel da tabela "artistas_seguidos" nesse caso.
 <br>
 use as tabelas "usuarios", "artistas_seguidos" e "artistas" e monte uma query que recupere uma coluna com o nome de cada usuário e o nome de cada artista que esse usuário segue.
+<details>
+    <summary>ver resposta</summary>
+    
+    SELECT
+      t1.nome,
+      t3.artista
+    FROM SpotifyClone.usuario AS t1
+    INNER JOIN SpotifyClone.artistas_seguidos AS t2
+    ON t1.usuario_id = t2.usuario_id
+    INNER JOIN SpotifyClone.artistas AS t3
+    ON t3.artista_id = t2.artista_id;
 
-<br>
+  </details>
+  <br>
 <br>
 
 ## **LEFT JOIN e RIGHT JOIN**
@@ -171,7 +199,7 @@ Já o RIGHT JOIN segue o mesmo princípio, porém retorna todos os dados da segu
 <br>
 <br>
 
-**Exercício de fixação**
+### **Exercício de fixação**
 <br>
 Primeiramente vamos adicionar uma linha na nossa tabela de albuns para que possamos treinar o LEFT JOIN e o RIGHT JOIN.
 ```SQL
@@ -180,9 +208,9 @@ Primeiramente vamos adicionar uma linha na nossa tabela de albuns para que possa
 ```
 Agora temos um album que não está relacionado a nenhuma canção.
 <br>
-Faça um INNER JOIN nas tabelas albuns e canções de forma que recupere uma coluna com o nome dos albuns e uma com o nome das canções e verifique o resultado;
+Faça novamente um INNER JOIN nas tabelas albuns e canções de forma que recupere uma coluna com o nome dos albuns e uma com o nome das canções e verifique o resultado, repare que nosso novo album não aparece pois ele não tem uma coluna correspondente na outra tabela.
 <br>
-Agora faça um LEFT JOIN buscando o mesmo resultado sendo a tabela 1, a tabela "albuns" e a 2 a tabela "cancoes".
+Agora faça um LEFT JOIN buscando o mesmo resultado, sendo a tabela 1, a tabela "albuns" e a 2 a tabela "cancoes".
 <details>
     <summary>ver resposta</summary>
     
