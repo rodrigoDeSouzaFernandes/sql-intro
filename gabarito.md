@@ -103,9 +103,9 @@ GROUP BY t1.customer_id; --agrupa pelo id, garantindo um correto agrupamento, se
 
 ```SQL
 SELECT
-  t1.title AS `Título`,
-  t1.description AS `Descrição`,
-  t3.name AS `Categoria`
+  t1.title AS "Título",
+  t1.description AS "Descrição",
+  t3.name AS "Categoria"
 FROM sakila.film AS t1
 INNER JOIN sakila.film_category AS t2
 ON t1.film_id = t2.film_id
@@ -117,9 +117,9 @@ ORDER BY `Categoria`;
 
 ```SQL
 SELECT --Selecionamos as colunas que queremos exibir
-  CONCAT(t2.first_name, " ", t2.last_name) AS `Funcionário`, --Concatenamos o first name e last name
-  t1.payment_date AS `Data`,
-  CONCAT(t3.first_name, " ", t3.last_name) AS `Cliente`
+  CONCAT(t2.first_name, " ", t2.last_name) AS "Funcionário", --Concatenamos o first name e last name
+  t1.payment_date AS "Data",
+  CONCAT(t3.first_name, " ", t3.last_name) AS "Cliente"
 FROM sakila.payment AS t1
 INNER JOIN sakila.staff AS t2
 ON t1.staff_id = t2.staff_id
@@ -128,6 +128,43 @@ ON t1.customer_id = t3.customer_id
 WHERE t2.first_name = "Mike" --Definimos uma das nossas condições de busca.
 AND MONTH(t1.payment_date) = 08 --Utilizamos o and para podermos usar mais uma condição.
 ORDER BY `Data` DESC; --Ordenamos pela data mais recente, ou seja ordem decrescente.
+```
+
+**7.** Usando as tabelas "customer", "address", "city" e "country", monte uma query que retorne uma coluna "Nome" com o nome completo do cliente, as colunas "Telefone", "Endereço", "Distrito", "Cidade" e "País" com os respectivos dados. Ordene o resultado em ordem alfabética pelo nome completo do cliente, e em caso de empate pelo nome do País.
+
+```SQL
+SELECT
+  CONCAT(t1.first_name, " ", t1.last_name) AS "Nome",
+  t2.phone AS "Telefone",
+  t2.address AS "Endereço",
+  t2.district AS "Distrito",
+  t3.city AS "Cidade",
+  t4.country AS "País"
+FROM sakila.customer AS t1
+INNER JOIN sakila.address AS t2
+ON t1.address_id = t2.address_id
+INNER JOIN sakila.city AS t3
+ON t2.city_id = t3.city_id
+INNER JOIN sakila.country AS t4
+ON t3.country_id = t4.country_id
+ORDER BY `Nome`, `País`
+```
+
+**8.** Agora exbiba o nome de cada país com o alias "País" e a quantidade de pessoas cadastradas em cada país com o alias "Pessoas cadastradas" e ordene por pessoas cadastradas de forma decrescente.
+
+```SQL
+SELECT
+  t4.country AS "País",
+  COUNT(*) AS "Pessoas cadastradas"
+FROM sakila.customer AS t1
+INNER JOIN sakila.address AS t2
+ON t1.address_id = t2.address_id
+INNER JOIN sakila.city AS t3
+ON t2.city_id = t3.city_id
+INNER JOIN sakila.country AS t4
+ON t3.country_id = t4.country_id
+GROUP BY `País`
+ORDER BY `Pessoas cadastradas` DESC;
 ```
 
 ---

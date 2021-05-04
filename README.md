@@ -240,6 +240,8 @@ Para os seguintes exercícios utilizaremos o banco de dados Sakila, clique [nest
 
 **6.** Usando as tabelas "payment", "staff" e "customer", monte uma query que exiba todos os pagamentos recebidos pelo funcionário "Mike Hillyer" no mês de agosto, a tabela deve ter 3 colunas, sendo a primeira o nome completo do funcionário que recebeu o pagamento com o alias "Funcionário", a segunda a data do pagamento com o alias "Data" e a terceira o nome completo do cliente com o alias "Cliente". A tabela deve estar ordenada pela data, da mais recente para a mais antiga.
 
+**7.** Usando as tabelas "customer", "address", "city" e "country", monte uma query que retorne uma coluna "Nome" com o nome completo do cliente, as colunas "Telefone", "Endereço", "Distrito", "Cidade" e "País" com os respectivos dados. Ordene o resultado em ordem alfabética pelo nome completo do cliente, e em caso de empate pelo nome do País.
+
 ### Bônus
 
 ---
