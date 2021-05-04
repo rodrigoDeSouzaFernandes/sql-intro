@@ -84,7 +84,7 @@ SELECT --selecionamos as colunas
   t1.country
 FROM sakila.country AS t1 --define tabela 1
 INNER JOIN sakila.city AS t2 --define tabela 2
-ON t1.country_id = t2.country_id --compara a foreign key que faz ligação entre as tabelas.
+ON t1.country_id = t2.country_id; --compara a foreign key que faz ligação entre as tabelas.
 ```
 
 **4.** Usando a tabela "customer" e "rental", monte uma query que retorne uma tabela de 2 colunas, sendo a primeira nomeada de "Nome completo" e que traga o nome completo do cliente e a segunda nomeada de "Total de aluguéis" contendo o número total de aluguéis feitos por cada cliente.
@@ -147,7 +147,7 @@ INNER JOIN sakila.city AS t3
 ON t2.city_id = t3.city_id
 INNER JOIN sakila.country AS t4
 ON t3.country_id = t4.country_id
-ORDER BY `Nome`, `País`
+ORDER BY `Nome`, `País`;
 ```
 
 **8.** Agora exiba o nome de cada país com o alias "País" e a quantidade de pessoas cadastradas em cada país com o alias "Pessoas cadastradas" e ordene por pessoas cadastradas de forma decrescente.
