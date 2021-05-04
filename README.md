@@ -6,7 +6,10 @@ Hoje você vai aprender a identificar os diferentes tipos de relacionamento entr
   * 1:N (um para muitos ou muitos para um)
   * N:N (muitos para muitos)
 
-Além disso veremos como consultar os dados de tabelas relacionadas.
+Além disso veremos como consultar os dados de tabelas relacionadas, você será capaz de entender e fazer consultas com:
+  * INNER JOIN
+  * LEFT JOIN
+  * RIGHT JOIN
 
 ## **Por que isso é importante?**
 
@@ -84,7 +87,7 @@ cancao_id | album_id | cancao
 8|3| Sweetie, Let's go Wild  
 
 ### **Mas o que associa as tabelas?**
-A essa altura do campeonato você ja deve estar se perguntando: "tá, mas como identificamos quais dados estão ligados entre si?", e é isso que vamos ver agora, e pra isso você deve compreender o que é uma "chave primária" e uma "chave estrangeira".
+A essa altura do campeonato você ja deve estar se perguntando: "mas como identificamos quais dados estão ligados entre si?", e é isso que vamos ver agora, e pra isso você deve compreender o que é uma "chave primária" e uma "chave estrangeira".
 
 ### **Primary Key**
 A Primary key ou chave primária de uma tabela, é a coluna identificadora de cada dado da tabela, obrigatoriamente toda tabela deve ter uma chave primaria, ela não pode ser nula e deve ser única, ou seja, não pode se repetir. É a identidade de cada linha.  
@@ -231,7 +234,14 @@ Agora faça um LEFT JOIN buscando o mesmo resultado, sendo a tabela 1, a tabela 
 
   Agora que você já aprendeu, inverta a ordem de chamada das tabelas e faça um RIGHT JOIN, o resultado deve ser o mesmo.
 
+<br>
+<br>
 
+## **Recursos adicionais (opcional)**
+  * Entenda mais sobre os SQL JOINS com a [w3schools](https://www.w3schools.com/sql/sql_join.asp)
+  * Aprenda JOINS e dê um sorriso em [terminalroot](https://terminalroot.com.br/2019/10/inner-join-left-join-right-join-mysql.html) (Foto engraçada para fixar o conteúdo)
+  * Entenda mais sobre relacionamentos através da criação de tabela e uso do INNER JOIN na prática no canal do [Quimello](https://www.youtube.com/watch?v=HUPl-AU_s7Q)
+  * SQL: Aprenda a utilizar a chave primária e a chave estrangeira em [devmedia](https://www.devmedia.com.br/sql-aprenda-a-utilizar-a-chave-primaria-e-a-chave-estrangeira/37636)
 
 
 
