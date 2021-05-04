@@ -170,3 +170,69 @@ ORDER BY `Pessoas cadastradas` DESC;
 ---
 
 ## Bônus
+
+**1.** Monte uma query que exiba todos os filmes que começam com a letra "A", e a quantidade de atores relacionados ao filme.
+
+```SQL
+SELECT
+  t1.title AS "Título",
+  COUNT(*) AS "Qtd atores"
+FROM sakila.film AS t1
+INNER JOIN sakila.film_actor AS t2
+ON t1.film_id = t2.film_id
+INNER JOIN sakila.actor AS t3
+ON t3.actor_id = t2.actor_id
+WHERE title LIKE "A%"
+GROUP BY t1.title;
+```
+
+**2** Agora exiba o nome completo de **todos os atores** e a quantidade de filmes em que cada ator participou, ordene os atores em ordem alfabética.
+
+```SQL
+SELECT
+  CONCAT(t3.first_name, " ", t3.last_name) AS "Nome completo",
+  COUNT(*)
+FROM sakila.film AS t1
+INNER JOIN sakila.film_actor AS t2
+ON t1.film_id = t2.film_id
+RIGHT JOIN sakila.actor AS t3 
+ON t3.actor_id = t2.actor_id
+GROUP BY `Nome completo`
+ORDER BY `Nome completo`;
+
+--O RIGHT JOIN na tabela "actor" garante que todos os atores serão exibidos, mesmo se algum não estivesse relacionado a nenhum filme.
+```
+
+**3** Monte uma query que exiba o Nome completo dos atores, o título dos filmes em que participaram e a categoria dos filmes. Ordene a busca pelo nome do ator em ordem decrescente (alfabética-invertida).
+
+```SQL
+SELECT
+  CONCAT(t3.first_name, " ", t3.last_name) AS "Nome completo",
+  t1.title AS "Título",
+  t5.name AS "Categoria"
+FROM sakila.film AS t1
+INNER JOIN sakila.film_actor AS t2
+ON t1.film_id = t2.film_id
+INNER JOIN sakila.actor AS t3
+ON t3.actor_id = t2.actor_id
+INNER JOIN sakila.film_category AS t4
+ON t4.film_id = t1.film_id
+INNER JOIN sakila.category AS t5
+ON t5.category_id = t4.category_id
+ORDER BY `Nome completo` DESC;
+```
+
+**4** Use a tabela "customer" e "rental" para exibir uma linha com o primeiro nome do cliente com o `customer_id = 1`, a data do ultimo aluguel, a data do primeiro aluguel e a contagem do total de aluguéis feitos por esse cliente.
+
+```SQL
+SELECT
+  t1.first_name AS "Nome",
+  MAX(t2.rental_date) AS "Ultimo aluguel",
+  MIN(t2.rental_date) AS "Primeiro aluguel",
+  COUNT(*) AS "Total de aluguéis"
+FROM sakila.customer AS t1
+INNER JOIN sakila.rental AS t2
+ON t1.customer_id = t2.customer_id
+WHERE t1.customer_id = 1
+GROUP BY t1.customer_id;
+```

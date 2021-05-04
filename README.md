@@ -246,6 +246,15 @@ Para os seguintes exercícios utilizaremos o banco de dados Sakila, clique [nest
 
 ### Bônus
 
+**1.** Monte uma query que exiba todos os filmes que começam com a letra "A", e a quantidade de atores relacionados ao filme.
+
+**2** Agora exiba o nome completo de **todos os atores** e a quantidade de filmes em que cada ator participou, ordene os atores em ordem alfabética.
+
+**3** Monte uma query que exiba o Nome completo dos atores, o título dos filmes em que participaram e a categoria dos filmes. Ordene a busca pelo nome do ator em ordem decrescente (alfabética-invertida).
+
+**4** Use a tabela "customer" e "rental" para exibir uma linha com o primeiro nome do cliente com o `customer_id = 1`, a data do ultimo aluguel, a data do primeiro aluguel e a contagem do total de aluguéis feitos por esse cliente.
+
+
 ---
 
 ## **Recursos adicionais (opcional)**
