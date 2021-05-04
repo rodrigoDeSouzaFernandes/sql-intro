@@ -150,7 +150,7 @@ ON t3.country_id = t4.country_id
 ORDER BY `Nome`, `País`
 ```
 
-**8.** Agora exbiba o nome de cada país com o alias "País" e a quantidade de pessoas cadastradas em cada país com o alias "Pessoas cadastradas" e ordene por pessoas cadastradas de forma decrescente.
+**8.** Agora exiba o nome de cada país com o alias "País" e a quantidade de pessoas cadastradas em cada país com o alias "Pessoas cadastradas" e ordene por pessoas cadastradas de forma decrescente.
 
 ```SQL
 SELECT

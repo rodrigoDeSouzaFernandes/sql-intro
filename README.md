@@ -4,9 +4,11 @@
 
 ## O que vamos aprender?
 
+Entender os diferentes tipos de relações entre tabelas e utilizar os JOINS para consultar informações relacionadas em diferentes tabelas.
+
 ### Você será capaz de:
 
-* Hoje você vai aprender a identificar os diferentes tipos de relacionamento entre tabelas, sendo eles:
+* Identificar os diferentes tipos de relacionamento entre tabelas, sendo eles:
   * 1:1 (um para um)
   * 1:N (um para muitos ou muitos para um)
   * N:N (muitos para muitos)
@@ -20,7 +22,7 @@
 
 ## Por que isso é importante?
 Bem, estamos vivendo na era digital, em todo o globo praticamente todas as informações relevantes ao nosso dia a dia são armazenadas em algum tipo de banco de dados.  
-Já entendemos que a maioria dos dados estão em em banco de dados e isso consequentemente aumenta a demanda por profissionais que conheçam sobre essa tecnologia, saber manipular esse dados é essencial para aumentar sua empregabilidade e facilitar o seu dia a dia.
+Já entendemos que a maioria dos dados estão em banco de dados e isso consequentemente aumenta a demanda por profissionais que conheçam sobre essa tecnologia, saber manipular esse dados é essencial para aumentar sua empregabilidade.
 
 ---
 
@@ -31,7 +33,7 @@ Já entendemos que a maioria dos dados estão em em banco de dados e isso conseq
 #### Tipos de relacionamento entre tabelas.
 
 1. **1:1 (um para um)**
-Em um relacionamento um para um, um registro de uma tabela está associado a um e apenas um registro de outra tabela e vice-versa. Por exemplo imagine apenas por questões didáticas, que temos uma tabela com os nomes de todos os alunos da Trybe e outra com seu número de matricula, temos entre essas duas tabelas uma relacao de um para um, pois cada estudante está ligado a apenas um número de matricula, e cada número é atribuido apenas para um estudante.
+Em um relacionamento um para um, um registro de uma tabela está associado a um e apenas um registro de outra tabela e vice-versa. Por exemplo imagine apenas por questões didáticas, que temos uma tabela com os nomes de todos os alunos da Trybe e outra com seu número de matricula, temos entre essas duas tabelas uma relação de um para um, pois cada estudante está ligado a apenas um número de matrícula, e cada número é atribuído a apenas um estudante.
 
 2. **1:N (um para muitos ou muitos para um)**
 Em um relacionamento um para muitos, um registro de uma tabela pode estar associado a muitos outros da outra tabela, mas cada registro dessa segunda tabela está associado a apenas um registro da primeira tabela. Um pouco confuso, não? vamos à um breve exemplo:
@@ -80,19 +82,18 @@ Imagine daqui a 5 anos, você é um programador de sucesso e decidiu fazer um cr
 A essa altura do campeonato você ja deve estar se perguntando: "mas como identificamos quais dados estão ligados entre si?", e é isso que vamos ver agora, e pra isso você deve compreender o que é uma "chave primária" e uma "chave estrangeira".
 
 #### Primary Key
-A Primary key ou chave primária de uma tabela, é a coluna identificadora de cada dado da tabela, obrigatoriamente toda tabela deve ter uma chave primaria, ela não pode ser nula e deve ser única, ou seja, não pode se repetir. É a identidade de cada linha.  
-volte nas tabelas acima e identifique a primary key de cada uma.
+A Primary key ou chave primária de uma tabela, é a coluna identificadora de cada dado da tabela, obrigatoriamente toda tabela deve ter uma chave primária, ela não pode ser nula e deve ser única, ou seja, não pode se repetir. É a identidade de cada linha.  
 
 #### Foreign Key
-A Foreign Key ou chave estrnageira de uma tabela, é a coluna onde vamos relacionar a quais dados essa linha pertence, deve-se especificar nessa coluna, a qual coluna e tabela que ela está relacionada.
-no caso das tabelas acima a foreign key foi montada na tabela canções a partir do `album_id` e através dela, podemos identificar quais canções pertencem a quais albuns.
+A Foreign Key ou chave estrangeira de uma tabela, é a coluna onde vamos relacionar a quais dados essa linha pertence, deve-se especificar nessa coluna, a qual coluna e tabela que ela está relacionada.
+no caso das tabelas abaixo a foreign key foi montada na tabela canções a partir do `album_id` e através dela, podemos identificar quais canções pertencem a quais álbuns.
 
 #### Exercícios de fixação
 
 **Observe as tabelas abaixo**
->vamos considerar que cada canção só pode estar presente em um album, para fins didáticos  
+>vamos considerar que cada canção só pode estar presente em um álbum, para fins didáticos  
 
-*Albuns*  
+*Álbuns*  
 album_id | album
 ---------|------
 1 | Envious
@@ -115,9 +116,9 @@ cancao_id | album_id | cancao
 <br>
 
 1. Qual é a relação entre as tabelas?
-2. Qual coluna é a chave primária da tabela "Albuns"
-3. Qual das tabelas têm uma chave estrangeira?
-4. Qual coluna é a chave estrangeira da tabela do exercicio anterior? 
+2. Qual coluna é a chave primária da tabela "Álbuns"
+3. Qual das tabelas tem uma chave estrangeira?
+4. Qual coluna é a chave estrangeira da tabela do exercício anterior? 
 
 ---
 
@@ -139,8 +140,6 @@ Aqui vamos recuperar o banco de dados que usaremos para entender  e praticar o c
 #### Para que servem os JOINS?
 O comando JOIN do SQL nos permite usar um operador de comparação para comparar os valores de colunas provenientes de tabelas associadas. Por meio desta cláusula, os registros de duas tabelas são usados para que sejam gerados os dados relacionados de ambas, ou seja, tem a função básica de agregar tabelas mediante a um campo que faça sentido às mesmas. Vejamos mais a seguir!
 
-Como já contextualizamos os JOINS, qual seria a diferença entre eles? veremos isso logo em seguida!
-
 #### INNER JOIN
 O INNER JOIN faz a junção das tabelas de forma que nos traz como resultado todas a linhas que tem dados correspondentes **nas duas tabelas**, não trazendo, assim, dados da tabela A ou tabela B que não tem relação na outra tabela, ou seja, podemos vê-lo como uma intersecção de conjuntos.
 
@@ -158,8 +157,8 @@ ON T1.id = T2.foreign_key --Utilizamos os alias para determinar de qual tabela p
 Agora vamos praticar com o banco de dados que recuperamos anteriormente.  
 Primeiro vamos analizar as tabelas que usaremos.
 1. Selecione o banco de dados na aba "Schemas";
-2. Clique em Tables
-3. Procure as tabelas "albuns" e "cancoes", clique com o botão direito do mouse sobre cada uma delas e escolha a opção "select rows", assim abrirá uma nova aba com uma consulta sobre a tabela, analise os dados com calma antes de avançar.  
+2. Clique em "Tables";
+3. Procure as tabelas "albuns" e "cancoes", clique com o botão direito do mouse sobre cada uma delas e escolha a opção "Select rows", assim abrirá uma nova aba com uma consulta sobre a tabela, analise os dados com calma antes de avançar.  
 
 ![Select rows](/images/select-rows.png)
 
@@ -201,17 +200,17 @@ Já o RIGHT JOIN segue o mesmo princípio, porém retorna todos os dados da segu
 
 #### Exercício de fixação
 
-Primeiramente vamos adicionar uma linha na nossa tabela de albuns para que possamos treinar o LEFT JOIN e o RIGHT JOIN.
+Primeiramente vamos adicionar uma linha na nossa tabela de álbuns para que possamos treinar o LEFT JOIN e o RIGHT JOIN.
 
 ```SQL
   USE SpotifyClone;
   INSERT INTO albuns(album, artista_id) VALUES ("Meu album", 1);
 ```
 
-Agora temos um album que não está relacionado a nenhuma canção.  
-Faça novamente um INNER JOIN nas tabelas albuns e canções de forma que recupere uma coluna com o nome dos albuns e uma com o nome das canções e verifique o resultado, repare que nosso novo album não aparece pois ele não tem uma coluna correspondente na outra tabela.
+Agora temos um álbum que não está relacionado a nenhuma canção.  
+Faça novamente um INNER JOIN nas tabelas "albuns" e "cancoes" de forma que recupere uma coluna com o nome dos álbuns e uma com o nome das canções e verifique o resultado, repare que nosso novo álbum não aparece pois ele não tem uma coluna correspondente na outra tabela.
 
-1. Agora faça um LEFT JOIN buscando o mesmo resultado, sendo a tabela 1, a tabela "albuns" e a 2 a tabela "cancoes".
+1. Agora faça um LEFT JOIN buscando o mesmo resultado, sendo a tabela 1, a tabela "albuns" e a 2, a tabela "cancoes".
 
 2. Agora que você já aprendeu, inverta a ordem de chamada das tabelas e faça um RIGHT JOIN, o resultado deve ser o mesmo.
 
@@ -222,11 +221,13 @@ resultado esperado:
 
 ## Exercícios
 ### Agora a prática
-Para os seguintes exercícios utilizaremos o banco de dados Sakila, clique [neste link](https://s3.us-east-2.amazonaws.com/assets.app.betrybe.com/back-end/sakila-1ae15ae82697888c35bf1f1c8acbf755.sql) para baixá-lo
+Para os seguintes exercícios utilizaremos o banco de dados sakila, clique [neste link](https://s3.us-east-2.amazonaws.com/assets.app.betrybe.com/back-end/sakila-1ae15ae82697888c35bf1f1c8acbf755.sql) para baixá-lo.  
+Caso ocorra algum problema, o banco sakila também está disponível neste [repositório](https://github.com/rodrigoDeSouzaFernandes/summer-jobs-desafio).  
+
 * Abra o arquivo;
 * Selecione todo o texto contido nele;
 * Cole em uma nova janela no MySQL Workbench e execute o código
-* Pronto, ja temos nosso banco de dados, agora mão na massa!
+* Pronto, já temos nosso banco de dados, agora mão na massa!
 
 **1.** Identifique o tipo de relacionamento da tabela "film" com a tabela "film_actor";
 
@@ -236,13 +237,13 @@ Para os seguintes exercícios utilizaremos o banco de dados Sakila, clique [nest
 
 **4.** Usando a tabela "customer" e "rental", monte uma query que retorne uma tabela de 2 colunas, sendo a primeira nomeada de "Nome completo" e que traga o nome completo do cliente e a segunda nomeada de "Total de aluguéis" contendo o número total de aluguéis feitos por cada cliente.
 
-**5.** Usando as tabelas "film", "film_category" e "category", monte uma query que exiba 3 colunas, o nome do filme com o nome "Título", a sua descrição com o nome "Descrição" e a categoria do filme com o nome "Categoria". Os resultados devem ser ordenados pela categoria em ordem alfabética.
+**5.** Usando as tabelas "film", "film_category" e "category", monte uma query que exiba 3 colunas, o nome do filme com o alias "Título", a sua descrição com o alias "Descrição" e a categoria do filme com o alias "Categoria". Os resultados devem ser ordenados pela categoria em ordem alfabética.
 
 **6.** Usando as tabelas "payment", "staff" e "customer", monte uma query que exiba todos os pagamentos recebidos pelo funcionário "Mike Hillyer" no mês de agosto, a tabela deve ter 3 colunas, sendo a primeira o nome completo do funcionário que recebeu o pagamento com o alias "Funcionário", a segunda a data do pagamento com o alias "Data" e a terceira o nome completo do cliente com o alias "Cliente". A tabela deve estar ordenada pela data, da mais recente para a mais antiga.
 
 **7.** Usando as tabelas "customer", "address", "city" e "country", monte uma query que retorne uma coluna "Nome" com o nome completo do cliente, as colunas "Telefone", "Endereço", "Distrito", "Cidade" e "País" com os respectivos dados. Ordene o resultado em ordem alfabética pelo nome completo do cliente, e em caso de empate pelo nome do País.
 
-**8.** Agora exbiba o nome de cada país com o alias "País" e a quantidade de pessoas cadastradas em cada país com o alias "Pessoas cadastradas" e ordene por pessoas cadastradas de forma decrescente.
+**8.** Agora exiba o nome de cada país com o alias "País" e a quantidade de pessoas cadastradas em cada país com o alias "Pessoas cadastradas" e ordene por pessoas cadastradas de forma decrescente.
 
 ### Bônus
 
