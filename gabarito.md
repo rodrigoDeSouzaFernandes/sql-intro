@@ -99,7 +99,36 @@ ON t1.customer_id = t2.customer_id --compara a foreign key que faz a ligação d
 GROUP BY t1.customer_id; --agrupa pelo id, garantindo um correto agrupamento, sem chances de erros como poderiam ocorrer ao agrupar por nomes em caso de nomes repetidos.
 ```
 
+**5.** Usando as tabelas "film", "film_category" e "category", monte uma query que exiba 3 colunas, o nome do filme com o nome "Título", a sua descrição com o nome "Descrição" e a categoria do filme com o nome "Categoria". Os resultados devem ser ordenados pela categoria em ordem alfabética.
 
+```SQL
+SELECT
+  t1.title AS `Título`,
+  t1.description AS `Descrição`,
+  t3.name AS `Categoria`
+FROM sakila.film AS t1
+INNER JOIN sakila.film_category AS t2
+ON t1.film_id = t2.film_id
+INNER JOIN sakila.category AS t3
+ON t2.category_id = t3.category_id
+ORDER BY `Categoria`;
+```
+**6.** Usando as tabelas "payment", "staff" e "customer", monte uma query que exiba todos os pagamentos recebidos pelo funcionário "Mike Hillyer" no mês de agosto, a tabela deve ter 3 colunas, sendo a primeira o nome completo do funcionário que recebeu o pagamento com o alias "Funcionário", a segunda a data do pagamento com o alias "Data" e a terceira o nome completo do cliente com o alias "Cliente". A tabela deve estar ordenada pela data, da mais recente para a mais antiga.
+
+```SQL
+SELECT --Selecionamos as colunas que queremos exibir
+  CONCAT(t2.first_name, " ", t2.last_name) AS `Funcionário`, --Concatenamos o first name e last name
+  t1.payment_date AS `Data`,
+  CONCAT(t3.first_name, " ", t3.last_name) AS `Cliente`
+FROM sakila.payment AS t1
+INNER JOIN sakila.staff AS t2
+ON t1.staff_id = t2.staff_id
+INNER JOIN sakila.customer AS t3
+ON t1.customer_id = t3.customer_id
+WHERE t2.first_name = "Mike" --Definimos uma das nossas condições de busca.
+AND MONTH(t1.payment_date) = 08 --Utilizamos o and para podermos usar mais uma condição.
+ORDER BY `Data` DESC; --Ordenamos pela data mais recente, ou seja ordem decrescente.
+```
 
 ---
 

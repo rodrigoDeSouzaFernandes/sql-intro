@@ -236,7 +236,9 @@ Para os seguintes exercícios utilizaremos o banco de dados Sakila, clique [nest
 
 **4.** Usando a tabela "customer" e "rental", monte uma query que retorne uma tabela de 2 colunas, sendo a primeira nomeada de "Nome completo" e que traga o nome completo do cliente e a segunda nomeada de "Total de aluguéis" contendo o número total de aluguéis feitos por cada cliente.
 
+**5.** Usando as tabelas "film", "film_category" e "category", monte uma query que exiba 3 colunas, o nome do filme com o nome "Título", a sua descrição com o nome "Descrição" e a categoria do filme com o nome "Categoria". Os resultados devem ser ordenados pela categoria em ordem alfabética.
 
+**6.** Usando as tabelas "payment", "staff" e "customer", monte uma query que exiba todos os pagamentos recebidos pelo funcionário "Mike Hillyer" no mês de agosto, a tabela deve ter 3 colunas, sendo a primeira o nome completo do funcionário que recebeu o pagamento com o alias "Funcionário", a segunda a data do pagamento com o alias "Data" e a terceira o nome completo do cliente com o alias "Cliente". A tabela deve estar ordenada pela data, da mais recente para a mais antiga.
 
 ### Bônus
 
