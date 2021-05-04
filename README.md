@@ -237,6 +237,69 @@ Agora faça um LEFT JOIN buscando o mesmo resultado, sendo a tabela 1, a tabela 
 <br>
 <br>
 
+# Exercícios
+## Agora a prática
+Para os seguintes exercícios utilizaremos o banco de dados Sakila, clique [neste link](https://s3.us-east-2.amazonaws.com/assets.app.betrybe.com/back-end/sakila-1ae15ae82697888c35bf1f1c8acbf755.sql) para baixá-lo
+<br>
+abra o arquivo, selecione todo o texto contido nele, cole em uma nova janela no MySQL Workbench e execute o código.
+<br>
+Pronto, ja temos nosso banco de dados, agora mão na massa!
+
+**Exercício 1 :** Identifique o tipo de relacionamento da tabela "film" com a tabela "film_actor";
+<details>
+  <summary>ver resposta</summary>
+  Relacionamento muitos para muitos, um ator pode fazer muitos filmes assim como um filme contém muitos atores.
+</details>
+<br>
+
+**Exercício 2 :** Identifique a relação entre "customer" e "rental";
+<details>
+  <summary>ver resposta</summary>
+  um para muitos, cada cliente pode fazer diversos aluguéis, mas cada rental_id é referente a apenas um cliente.
+</details>
+<br>
+
+
+**Exercício 3 :** Usando a tabela "customer" e "rental" monte uma query que retorne uma tabela de 2 colunas, sendo a primeira nomeada de "Nome completo" e que traga o nome completo do cliente, e a segunda nomeada de "Total de aluguéis" contendo o número de aluguéis de cada cliente.
+<details>
+  <summary>ver resposta</summary>
+  
+  ```SQL
+  SELECT
+    CONCAT(t1.first_name, ' ', t1.last_name) AS "Nome completo",
+    count(*) AS "Total de alugéis" --quando agrupado, conta o numero de dados referente àquela linha.
+  FROM sakila.customer AS t1
+  INNER JOIN sakila.rental AS t2
+  ON t1.customer_id = t2.customer_id --compara a foreign key que faz a ligação das tabelas.
+  GROUP BY t1.customer_id; --agrupa pelo id, garantindo um correto agrupamento, sem chances de erros como poderiam ocorrer ao agrupar por nomes em caso de nomes repetidos.
+  ```
+
+</details>
+<br>
+
+
+**Exercício 4 :** Usando as tabelas "country" e "city" monte uma query que exiba o nome das cidades e o nome do país a qual pertence.
+<details>
+  <summary>ver resposta</summary>
+  
+  ```SQL
+  SELECT --selecionamos as colunas
+    t2.city,
+    t1.country
+  FROM sakila.country AS t1 --define tabela 1
+  INNER JOIN sakila.city AS t2 --define tabela 2
+  ON t1.country_id = t2.country_id --compara a foreign key que faz ligação entre as tabelas.
+  ```
+
+</details>
+<br>
+
+
+## Bônus
+
+<br>
+<br>
+
 ## **Recursos adicionais (opcional)**
   * Entenda mais sobre os SQL JOINS com a [w3schools](https://www.w3schools.com/sql/sql_join.asp)
   * Aprenda JOINS e dê um sorriso em [terminalroot](https://terminalroot.com.br/2019/10/inner-join-left-join-right-join-mysql.html) (Foto engraçada para fixar o conteúdo)
