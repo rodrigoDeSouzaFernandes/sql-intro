@@ -242,6 +242,8 @@ Para os seguintes exercícios utilizaremos o banco de dados Sakila, clique [nest
 
 **7.** Usando as tabelas "customer", "address", "city" e "country", monte uma query que retorne uma coluna "Nome" com o nome completo do cliente, as colunas "Telefone", "Endereço", "Distrito", "Cidade" e "País" com os respectivos dados. Ordene o resultado em ordem alfabética pelo nome completo do cliente, e em caso de empate pelo nome do País.
 
+**8.** Agora exbiba o nome de cada país com o alias "País" e a quantidade de pessoas cadastradas em cada país com o alias "Pessoas cadastradas" e ordene por pessoas cadastradas de forma decrescente.
+
 ### Bônus
 
 ---
