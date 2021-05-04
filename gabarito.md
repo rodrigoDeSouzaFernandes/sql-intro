@@ -16,7 +16,7 @@ R: A coluna "album_id" na tabela "cancoes" serve pra identificar a qual linha da
 
 ### INNER JOIN
 
-1. monte uma query que recupere os dados do exemplo acima, porém que exiba também o nome do artista associado ao álbum.  
+1. Monte uma query que recupere os dados do exemplo acima, porém que exiba também o nome do artista associado ao álbum.  
 
 ```SQL
 SELECT

@@ -53,25 +53,25 @@ Imagine daqui a 5 anos, você é um programador de sucesso e decidiu fazer um cr
 1. <details>
     <summary>Relação entre tripulantes e comandante.</summary>
     <br>
-    N:1 - neste cenário do cruzeiro, muitos passageiros estão ligados a apenas um comandante do navio.
+    N:1 - Neste cenário do cruzeiro, muitos passageiros estão ligados a apenas um comandante do navio.
   </details>
 
 2. <details>
     <summary>Relação entre quartos e tripulantes.</summary>
     <br>
-    1:N - cada quarto pode abrigar mais de uma pessoa, mas cada pessoa pertence a apenas um quarto.
+    1:N - Cada quarto pode abrigar mais de uma pessoa, mas cada pessoa pertence a apenas um quarto.
   </details>
 
 3. <details>
     <summary>Relação entre tripulantes e garçons.</summary>
     <br>
-    N:N - uma pessoa pode ser servida por diferentes garçons em diferentes momentos, assim como o mesmo garçon serve diversas pessoas.
+    N:N - Uma pessoa pode ser servida por diferentes garçons em diferentes momentos, assim como o mesmo garçon serve diversas pessoas.
   </details>
 
 4. <details>
     <summary>Relação entre tripulantes e passagens.</summary>
     <br>
-    1:1 - cada pessoa tem exclusivamente uma passagem e cada passagem é destinada a apenas uma pessoa.
+    1:1 - Cada pessoa tem exclusivamente uma passagem e cada passagem é destinada a apenas uma pessoa.
     </details>
 
 ---
