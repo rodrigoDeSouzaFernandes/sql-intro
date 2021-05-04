@@ -87,7 +87,9 @@ volte nas tabelas acima e identifique a primary key de cada uma.
 A Foreign Key ou chave estrnageira de uma tabela, é a coluna onde vamos relacionar a quais dados essa linha pertence, deve-se especificar nessa coluna, a qual coluna e tabela que ela está relacionada.
 no caso das tabelas acima a foreign key foi montada na tabela canções a partir do `album_id` e através dela, podemos identificar quais canções pertencem a quais albuns.
 
-**Observe as tabelas abaixo e identifique a relação entre elas:**
+#### Exercícios de fixação
+
+**Observe as tabelas abaixo**
 >vamos considerar que cada canção só pode estar presente em um album, para fins didáticos  
 
 *Albuns*  
@@ -110,9 +112,16 @@ cancao_id | album_id | cancao
 7|3| Honey, So I do
 8|3| Sweetie, Let's go Wild  
 
+<br>
+
+1. Qual é a relação entre as tabelas?
+2. Qual coluna é a chave primária da tabela "Albuns"
+3. Qual das tabelas têm uma chave estrangeira?
+4. Qual coluna é a chave estrangeira da tabela do exercicio anterior? 
+
 ---
 
-### **Recuperando um banco de dados**
+### Recuperando um banco de dados
 Aqui vamos recuperar o banco de dados que usaremos para entender  e praticar o conteúdo a seguir.  
 
 1. Primeiro vamos acessar o [repositório](https://github.com/rodrigoDeSouzaFernandes/summer-jobs-desafio) que contém o arquivo de recuperação
@@ -125,15 +134,15 @@ Aqui vamos recuperar o banco de dados que usaremos para entender  e praticar o c
 
 ---
 
-### **Como consultar tabelas relacionadas através do método JOIN**
+### Como consultar tabelas relacionadas através do método JOIN
 
-#### **Para que servem os JOINS?**
+#### Para que servem os JOINS?
 O comando JOIN do SQL nos permite usar um operador de comparação para comparar os valores de colunas provenientes de tabelas associadas. Por meio desta cláusula, os registros de duas tabelas são usados para que sejam gerados os dados relacionados de ambas, ou seja, tem a função básica de agregar tabelas mediante a um campo que faça sentido às mesmas. Vejamos mais a seguir!
 
 Como já contextualizamos os JOINS, qual seria a diferença entre eles? veremos isso logo em seguida!
 
-#### **INNER JOIN**
-O INNER JOIN faz a junção das tabelas de forma que nos traz como resultado todas a linhas que tem dados correspondentes nas duas tabelas, não trazendo, assim, dados da tabela A ou tabela B que não tem relação na outra tabela, ou seja, podemos vê-lo como uma intersecção de conjuntos.
+#### INNER JOIN
+O INNER JOIN faz a junção das tabelas de forma que nos traz como resultado todas a linhas que tem dados correspondentes **nas duas tabelas**, não trazendo, assim, dados da tabela A ou tabela B que não tem relação na outra tabela, ou seja, podemos vê-lo como uma intersecção de conjuntos.
 
 ![INNER JOIN](/images/INNER_JOIN.png)
 
@@ -146,15 +155,15 @@ INNER JOIN tabela_2 AS T2 --Determinamos a segunda tabela e também passamos um 
 ON T1.id = T2.foreign_key --Utilizamos os alias para determinar de qual tabela pertence cada coluna e então selecionamos as colunas que estão relacionadas para que possamos compará-las;
 ```
 
-agora vamos praticar com o banco de dados que recuperamos anteriormente.
-Primeiro vamos analizar as tabelas que usaremos
-1. selecione o banco de dados na aba "Schemas";
-2. clique em Tables
+Agora vamos praticar com o banco de dados que recuperamos anteriormente.  
+Primeiro vamos analizar as tabelas que usaremos.
+1. Selecione o banco de dados na aba "Schemas";
+2. Clique em Tables
 3. Procure as tabelas "albuns" e "cancoes", clique com o botão direito do mouse sobre cada uma delas e escolha a opção "select rows", assim abrirá uma nova aba com uma consulta sobre a tabela, analise os dados com calma antes de avançar.  
 
 ![Select rows](/images/select-rows.png)
 
-reproduza o código abaixo no workbench para entender melhor como funciona o INNER JOIN.
+Reproduza o código abaixo no workbench para entender melhor como funciona o INNER JOIN.
 
 ```SQL
 SELECT
@@ -166,52 +175,18 @@ ON t1.album_id = t2.album_id;
 ```
 
 **Recaptulando**
-1. selecionamos as colunas que queremos exibir;
-2. usamos o FROM para informar qual é a primeira tabela, como não especificamos o banco de dados antes de iniciar a query, devemos o informar junto à tabela;
-3. usamos o INNER JOIN para especificar a qual tabela queremos fazer a junção;
-4. definimos as colunas que devem ter seus dados iguais nas duas tabelas para que essas linhas sejam associadas.
+1. Selecionamos as colunas que queremos exibir;
+2. Usamos o FROM para informar qual é a primeira tabela, como não especificamos o banco de dados antes de iniciar a query, devemos o informar junto à tabela;
+3. Usamos o INNER JOIN para especificar a qual tabela queremos fazer a junção;
+4. Definimos as colunas que devem ter seus dados iguais nas duas tabelas para que essas linhas sejam associadas.
 
 #### Exercicio de fixação
-1. monte uma query que recupere os dados do exemplo acima, porém que exiba também o nome do artista associado ao album.  
+
 >dica: pode se fazer inúmeros INNER JOINS na mesma query
-  <details>
-  <summary>ver resposta</summary>
-  
-  ```SQL
-  SELECT
-      t2.album,
-      t1.cancao,
-      t3.artista
-    FROM SpotifyClone.cancoes AS t1
-    INNER JOIN SpotifyClone.albuns AS t2
-    ON t1.album_id = t2.album_id
-    INNER JOIN SpotifyClone.artistas AS t3
-    ON t3.artista_id = t2.artista_id;
-  ```
 
-  </details>
+1. Monte uma query que recupere os dados do exemplo acima, porém que exiba também o nome do artista associado ao álbum.  
 
-  <br>
-
-2. Quando a relação entre as tabelas é N:N(muitos para muitos), devemos usar uma tabela intermediária para associar os dados, este é o papel da tabela "artistas_seguidos" nesse caso.
-<br>
-use as tabelas "usuarios", "artistas_seguidos" e "artistas" e monte uma query que recupere uma coluna com o nome de cada usuário e o nome de cada artista que esse usuário segue.
-
-  <details>
-  <summary>ver resposta</summary>
-  
-  ```SQL
-  SELECT
-      t1.nome,
-      t3.artista
-    FROM SpotifyClone.usuario AS t1
-    INNER JOIN SpotifyClone.artistas_seguidos AS t2
-    ON t1.usuario_id = t2.usuario_id
-    INNER JOIN SpotifyClone.artistas AS t3
-    ON t3.artista_id = t2.artista_id;
-  ```
-
-  </details>
+2. Quando a relação entre as tabelas é N:N(muitos para muitos), devemos usar uma tabela intermediária para associar os dados, este é o papel da tabela "artistas_seguidos" nesse caso, use as tabelas "usuarios", "artistas_seguidos" e "artistas" e monte uma query que recupere uma coluna com o nome de cada usuário e o nome de cada artista que esse usuário segue.
 
 ---
 
@@ -224,8 +199,6 @@ Já o RIGHT JOIN segue o mesmo princípio, porém retorna todos os dados da segu
 
 ![RIGHT JOIN](/images/RIGHT_JOIN.png)
 
-
-
 #### Exercício de fixação
 
 Primeiramente vamos adicionar uma linha na nossa tabela de albuns para que possamos treinar o LEFT JOIN e o RIGHT JOIN.
@@ -236,88 +209,38 @@ Primeiramente vamos adicionar uma linha na nossa tabela de albuns para que possa
 ```
 
 Agora temos um album que não está relacionado a nenhuma canção.  
-Faça novamente um INNER JOIN nas tabelas albuns e canções de forma que recupere uma coluna com o nome dos albuns e uma com o nome das canções e verifique o resultado, repare que nosso novo album não aparece pois ele não tem uma coluna correspondente na outra tabela.  
-Agora faça um LEFT JOIN buscando o mesmo resultado, sendo a tabela 1, a tabela "albuns" e a 2 a tabela "cancoes".
-<details>
-    <summary>ver resposta</summary>
-    
-    SELECT
-      t1.album,
-      t2.cancao
-    FROM SpotifyClone.albuns AS t1
-    LEFT JOIN SpotifyClone.cancoes AS t2
-    ON t1.album_id = t2.album_id;
-    
+Faça novamente um INNER JOIN nas tabelas albuns e canções de forma que recupere uma coluna com o nome dos albuns e uma com o nome das canções e verifique o resultado, repare que nosso novo album não aparece pois ele não tem uma coluna correspondente na outra tabela.
 
-  </details>
-  <br>
-  <br>
+1. Agora faça um LEFT JOIN buscando o mesmo resultado, sendo a tabela 1, a tabela "albuns" e a 2 a tabela "cancoes".
 
-  resultado esperado:
-  ![Left e right join](/images/resultado-left-join.jpeg)
+2. Agora que você já aprendeu, inverta a ordem de chamada das tabelas e faça um RIGHT JOIN, o resultado deve ser o mesmo.
 
-  Agora que você já aprendeu, inverta a ordem de chamada das tabelas e faça um RIGHT JOIN, o resultado deve ser o mesmo.
+resultado esperado:
+![Left e right join](/images/resultado-left-join.jpeg)
 
-<br>
-<br>
+---
 
 ## Exercícios
 ### Agora a prática
 Para os seguintes exercícios utilizaremos o banco de dados Sakila, clique [neste link](https://s3.us-east-2.amazonaws.com/assets.app.betrybe.com/back-end/sakila-1ae15ae82697888c35bf1f1c8acbf755.sql) para baixá-lo
-<br>
-abra o arquivo, selecione todo o texto contido nele, cole em uma nova janela no MySQL Workbench e execute o código.
-<br>
-Pronto, ja temos nosso banco de dados, agora mão na massa!
+* Abra o arquivo;
+* Selecione todo o texto contido nele;
+* Cole em uma nova janela no MySQL Workbench e execute o código
+* Pronto, ja temos nosso banco de dados, agora mão na massa!
 
-**Exercício 1 :** Identifique o tipo de relacionamento da tabela "film" com a tabela "film_actor";
-<details>
-  <summary>ver resposta</summary>
-  Relacionamento muitos para muitos, um ator pode fazer muitos filmes assim como um filme contém muitos atores.
-</details>
-<br>
+**1.** Identifique o tipo de relacionamento da tabela "film" com a tabela "film_actor";
 
-**Exercício 2 :** Identifique a relação entre "customer" e "rental";
-<details>
-  <summary>ver resposta</summary>
-  um para muitos, cada cliente pode fazer diversos aluguéis, mas cada rental_id é referente a apenas um cliente.
-</details>
-<br>
+**2.** Identifique a relação entre "customer" e "rental".
+
+**3.** Usando as tabelas "country" e "city" monte uma query que exiba o nome das cidades e o nome do país a qual cada cidade pertence.
+
+**4.** Usando a tabela "customer" e "rental", monte uma query que retorne uma tabela de 2 colunas, sendo a primeira nomeada de "Nome completo" e que traga o nome completo do cliente e a segunda nomeada de "Total de aluguéis" contendo o número total de aluguéis feitos por cada cliente.
 
 
-**Exercício 3 :** Usando a tabela "customer" e "rental" monte uma query que retorne uma tabela de 2 colunas, sendo a primeira nomeada de "Nome completo" e que traga o nome completo do cliente, e a segunda nomeada de "Total de aluguéis" contendo o número de aluguéis de cada cliente.
-<details>
-  <summary>ver resposta</summary>
-  
-  ```SQL
-  SELECT
-    CONCAT(t1.first_name, ' ', t1.last_name) AS "Nome completo",
-    count(*) AS "Total de alugéis" --quando agrupado, conta o numero de dados referente àquela linha.
-  FROM sakila.customer AS t1
-  INNER JOIN sakila.rental AS t2
-  ON t1.customer_id = t2.customer_id --compara a foreign key que faz a ligação das tabelas.
-  GROUP BY t1.customer_id; --agrupa pelo id, garantindo um correto agrupamento, sem chances de erros como poderiam ocorrer ao agrupar por nomes em caso de nomes repetidos.
-  ```
-
-</details>
-<br>
-
-
-**Exercício 4 :** Usando as tabelas "country" e "city" monte uma query que exiba o nome das cidades e o nome do país a qual pertence.
-<details>
-  <summary>ver resposta</summary>
-  
-  ```SQL
-  SELECT --selecionamos as colunas
-    t2.city,
-    t1.country
-  FROM sakila.country AS t1 --define tabela 1
-  INNER JOIN sakila.city AS t2 --define tabela 2
-  ON t1.country_id = t2.country_id --compara a foreign key que faz ligação entre as tabelas.
-  ```
-
-</details>
 
 ### Bônus
+
+---
 
 ## **Recursos adicionais (opcional)**
   * Entenda mais sobre os SQL JOINS com a [w3schools](https://www.w3schools.com/sql/sql_join.asp)
